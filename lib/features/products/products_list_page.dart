@@ -71,13 +71,16 @@ class _ProductsListPageState extends State<ProductsListPage> {
             }
             if (state.error != null && state.products.isEmpty) {
               return Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(state.error!, textAlign: TextAlign.center),
-                    AppSpacing.gapMd,
-                    OutlinedButton(onPressed: () => cubit.initializeProducts(), child: const Text('Try again')),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(AppSpacing.lg),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(state.error!, textAlign: TextAlign.center),
+                      AppSpacing.gapMd,
+                      OutlinedButton(onPressed: () => cubit.initializeProducts(), child: const Text('Try again')),
+                    ],
+                  ),
                 ),
               );
             }
@@ -109,10 +112,7 @@ class _ProductsListPageState extends State<ProductsListPage> {
                           child: Column(
                             children: [
                               Text(state.error ?? 'Errorrrrrrr', textAlign: TextAlign.center),
-                              TextButton(
-                                onPressed: state.error != null ? cubit.initializeProducts : cubit.paginateProducts,
-                                child: const Text('Try again'),
-                              ),
+                              TextButton(onPressed: () => cubit.paginateProducts(), child: const Text('Try again')),
                             ],
                           ),
                         );

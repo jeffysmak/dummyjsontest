@@ -40,8 +40,7 @@ class ProductsCubit extends Cubit<ProductsState> {
           currentState.copyWith(products: page.products, hasMore: page.products.length < page.total, loading: false, clearError: true),
         );
       },
-      failure: (error) =>
-          emit(currentState.copyWith(products: currentState.products, error: error.message, hasMore: currentState.hasMore)),
+      failure: (error) => emit(currentState.copyWith(products: const [], error: error.message, hasMore: true, loading: false)),
     );
   }
 
@@ -61,7 +60,7 @@ class ProductsCubit extends Cubit<ProductsState> {
           currentState.copyWith(products: page.products, hasMore: page.products.length < page.total, loading: false, clearError: true),
         );
       },
-      failure: (error) => emit(currentState.copyWith(products: currentState.products, error: error.message)),
+      failure: (error) => emit(currentState.copyWith(products: currentState.products, error: error.message, loading: false)),
     );
   }
 }
